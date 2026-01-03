@@ -1,16 +1,23 @@
-import { useRef, useEffect } from "react";
+import { useEffect } from "react";
 
-const Navbar = ({ setSearch, typeFilter, setTypeFilter, parkingFilter, setParkingFilter }) => {
-    const inputRef = useRef();
-
+const Navbar = ({
+    setSearch,
+    typeFilter,
+    setTypeFilter,
+    parkingFilter,
+    setParkingFilter,
+    searchRef
+}) => {
     useEffect(() => {
-        inputRef.current.focus();
-    }, []);
+        if (searchRef?.current) {
+            searchRef.current.focus();
+        }
+    }, [searchRef]);
 
     return (
         <div style={{ padding: 10, background: "#eee", display: "flex", gap: 10 }}>
             <input
-                ref={inputRef}
+                ref={searchRef}
                 placeholder="Search by name or address"
                 onChange={e => setSearch(e.target.value)}
             />
